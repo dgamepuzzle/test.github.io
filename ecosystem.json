@@ -1,0 +1,24 @@
+{
+  apps : [
+    {
+      name: "ExampleApp",
+      script: "./bin/www",
+      env: {
+      },
+      env_production : {
+        NODE_ENV: "production"
+      }
+    }
+  ],
+
+  deploy: {
+    production: {
+      user: "root",
+      host: "45.32.17.241",
+      ref: "origin/master",
+      repo: "git@github.com:hoangkhoi/demo1.git",
+      path: "/var/www",
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production"
+    }
+  }
+}
